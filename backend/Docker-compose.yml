@@ -1,0 +1,19 @@
+version: '3'
+services: 
+  redis-server:
+    image: 'redis'
+    # ports: 
+    #   - '6379:6379'
+  backend-node-shopping:
+    build: 
+      dockerfile: Dockerfile
+      context: .
+    # volumes: 
+    #   - /app/node_modules
+    #   - ./:/app
+    environment: 
+      - PORT=4000
+      - DB_HOST=redis-server
+      # - DB_PORT=6379      
+    ports: 
+      - '4000:4000'

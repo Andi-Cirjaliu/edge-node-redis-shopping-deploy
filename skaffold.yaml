@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: etcd-example
+build:
+  artifacts:
+  - image: backend
+    context: backend
+    sync:
+      manual:
+      - src: 'backend/*'
+        dest: /app/*
+deploy:
+  kubectl:
+    manifests:
+      - ./k8s/*
