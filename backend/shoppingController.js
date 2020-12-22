@@ -4,27 +4,17 @@ const getShopppingList = async (req, res, next) => {
     console.log('Get shopping list...');
 
     try {
-      // db.getAllItems().then( result => {
-      //   console.log('Controller - all items: ', result);
-      //   // return res.json(result);
-      //   return res.render("shopping/main", {
-      //     items: result,
-      //     pageTitle: "Shopping list",
-      //     errorMsg: null 
-      //   });
-      // });
-      
       const result = await db.getAllItems();
       // return res.json(result);
       return res.render("shopping/main", {
         items: result,
         pageTitle: "Shopping list",
-        errorMsg: null 
+        errorMsg: null,
       });
     } catch (err) {
-        const error = new Error("Could not retrieve the shopping list");
-        error.statusCode = 500;
-        return next(error);
+      const error = new Error("Could not retrieve the shopping list");
+      error.statusCode = 500;
+      return next(error);
     }
 }
 
